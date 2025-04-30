@@ -1,0 +1,46 @@
+CREATE TABLE IF NOT EXISTS Config (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    config_name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS ConfigItem (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    config_id INTEGER NOT NULL,
+    thrust INTEGER NOT NULL,
+    power REAL NOT NULL,
+    FOREIGN KEY (config_id) REFERENCES Config(id) ON DELETE CASCADE
+);
+
+selectAllConfigs:
+SELECT * FROM Config;
+
+selectConfigById:
+SELECT * FROM Config WHERE id = ?;
+
+selectConfigByName:
+SELECT * FROM Config WHERE config_name = ?;
+
+selectConfigItemsByConfigId:
+SELECT * FROM ConfigItem WHERE config_id = ?;
+
+insertConfig:
+INSERT INTO Config (config_name) VALUES (?);
+
+insertConfigItem:
+INSERT INTO ConfigItem (config_id, power, thrust) VALUES (?, ?, ?);
+
+deleteConfig:
+DELETE FROM Config WHERE id = ?;
+
+deleteConfigItemById:
+DELETE FROM ConfigItem WHERE id = ?;
+
+deleteConfigItemsByConfigId:
+DELETE FROM ConfigItem WHERE config_id = ?;
+
+deleteConfigItemByConfigIdAndIndex:
+DELETE FROM ConfigItem WHERE config_id = ? AND id = ?;
+
+updateConfigItem:
+UPDATE ConfigItem SET power = ?, thrust = ? WHERE id = ?;
+

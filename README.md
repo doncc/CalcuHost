@@ -6,6 +6,6 @@
 
 截图：
 
-![](..\CalcuHost\screenshot\screen1.gif)
+![](./screenshot/screen1.gif)
 
-![](..\CalcuHost\screenshot\screen2.gif)
+![](./screenshot/screen2.gif)
